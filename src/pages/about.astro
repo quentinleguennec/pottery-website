@@ -1,0 +1,14 @@
+---
+import Base from "../layouts/Base.astro";
+import { site } from "../data/site";
+---
+
+<Base title="About">
+  <article class="prose">
+    <p class="eyebrow">About</p>
+    <h1>{site.artistName}</h1>
+    <p class="lede">
+      A short portrait will go here. It can say where the work is made, and what you want someone to know before they look through the pieces.
+    </p>
+  </article>
+</Base>

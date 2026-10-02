@@ -1,0 +1,70 @@
+---
+import { Image } from "astro:assets";
+import Base from "../../layouts/Base.astro";
+import PieceCard from "../../components/PieceCard.astro";
+import { getSeries, pieceImages, siblingGlazes, pieces, type SeriesId } from "../../data/catalog";
+import { imageFor } from "../../data/images";
+
+export function getStaticPaths() {
+  return pieces.map((piece) => ({ params: { slug: piece.slug } }));
+}
+
+const slug = Astro.params.slug;
+const piece = pieces.find((item) => item.slug === slug);
+if (!piece) throw new Error(`Unknown piece: ${slug}`);
+
+const gallery = pieceImages(piece)
+  .map((file) => imageFor(file))
+  .filter((file) => file !== undefined);
+const series = piece.series ? getSeries(piece.series) : undefined;
+const siblings = siblingGlazes(piece);
+const label = piece.glaze ? `${piece.title}, ${piece.glaze} glaze` : piece.title;
+---
+
+<Base title={piece.glaze ? `${piece.title}, ${piece.glaze}` : piece.title}>
+  <article class="piece">
+    <div class="piece-gallery">
+      {
+        gallery.length > 0 ? (
+          gallery.map((image, index) => (
+            <Image
+              src={image}
+              alt={index === 0 ? label : ""}
+              widths={[640, 960, 1400, 1800]}
+              sizes="(min-width: 900px) 58vw, 100vw"
+              loading={index === 0 ? "eager" : "lazy"}
+            />
+          ))
+        ) : (
+          <div class="frame-empty piece-empty">
+            <span>Photograph coming</span>
+          </div>
+        )
+      }
+    </div>
+    <div class="piece-copy">
+      <p class="eyebrow">{series ? series.title : "Piece"}</p>
+      <h1>{piece.title}</h1>
+      {piece.glaze && <p class="lede">{piece.glaze}</p>}
+      {
+        series && (
+          <p class="piece-meta">
+            <a href={`/series/${series.id as SeriesId}`}>{series.title}</a>
+          </p>
+        )
+      }
+      {
+        siblings.length > 0 && (
+          <div class="related">
+            <h2>Other glazes</h2>
+            <div class="variant-row">
+              {siblings.map((sibling) => (
+                <PieceCard piece={sibling} image={imageFor(sibling.image)} />
+              ))}
+            </div>
+          </div>
+        )
+      }
+    </div>
+  </article>
+</Base>

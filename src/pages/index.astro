@@ -1,0 +1,90 @@
+---
+import { Image } from "astro:assets";
+import Base from "../layouts/Base.astro";
+import PieceCard from "../components/PieceCard.astro";
+import { site } from "../data/site";
+import { getSeries, heroImage, individualPieces } from "../data/catalog";
+import { imageFor } from "../data/images";
+
+const hero = imageFor(heroImage);
+const glitch = getSeries("glitch");
+const flowers = getSeries("flowers");
+const glitchImage = imageFor(glitch.image);
+const flowersImage = imageFor(flowers.image);
+const individuals = individualPieces().slice(0, 3);
+
+if (!hero || !glitchImage || !flowersImage) {
+  throw new Error("Home page images are missing from src/assets/pieces.");
+}
+---
+
+<Base>
+  <section class="hero">
+    <div class="hero-copy">
+      <h1>
+        <span class="hero-first">{site.artistFirstName}</span>
+        <span class="hero-last">{site.artistLastName}</span>
+      </h1>
+      <p>{site.tagline}</p>
+    </div>
+    <div class="hero-media">
+      <Image
+        src={hero}
+        alt="Shift, floating blue glaze, seen from the side"
+        widths={[640, 960, 1400, 1800]}
+        sizes="(min-width: 800px) 58vw, 100vw"
+        loading="eager"
+      />
+    </div>
+  </section>
+
+  <section class="section">
+    <a class="series-block" href="/series/glitch">
+      <div class="frame-media">
+        <Image
+          src={glitchImage}
+          alt=""
+          widths={[480, 800, 1200]}
+          sizes="(min-width: 800px) 50vw, 100vw"
+        />
+      </div>
+      <div class="block-copy">
+        <p class="eyebrow">Series</p>
+        <h2>{glitch.title}</h2>
+        <p>{glitch.summary}</p>
+      </div>
+    </a>
+  </section>
+
+  <section class="section">
+    <a class="series-block" href="/series/flowers">
+      <div class="frame-media">
+        <Image
+          src={flowersImage}
+          alt=""
+          widths={[480, 800, 1200]}
+          sizes="(min-width: 800px) 50vw, 100vw"
+        />
+      </div>
+      <div class="block-copy">
+        <p class="eyebrow">Series</p>
+        <h2>{flowers.title}</h2>
+        <p>{flowers.summary}</p>
+      </div>
+    </a>
+  </section>
+
+  <section class="section">
+    <div class="section-head">
+      <h2>Pieces</h2>
+      <a href="/work">All work</a>
+    </div>
+    <div class="piece-grid">
+      {
+        individuals.map((piece) => (
+          <PieceCard piece={piece} image={imageFor(piece.image)} />
+        ))
+      }
+    </div>
+  </section>
+</Base>

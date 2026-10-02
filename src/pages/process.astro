@@ -1,0 +1,40 @@
+---
+import Base from "../layouts/Base.astro";
+
+const steps = [
+  {
+    title: "Clay",
+    text: "A few sentences on the clay bodies you use.",
+  },
+  {
+    title: "Forming",
+    text: "How a piece is built, thrown, or altered.",
+  },
+  {
+    title: "Glaze",
+    text: "How you choose and apply the surfaces.",
+  },
+  {
+    title: "Firing",
+    text: "The kiln, and what the fire does to the work.",
+  },
+];
+---
+
+<Base title="Process">
+  <article class="prose">
+    <p class="eyebrow">Process</p>
+    <h1>How the work is made</h1>
+    <p class="lede">
+      This page is the general studio process.
+    </p>
+    {
+      steps.map((step) => (
+        <section>
+          <h2>{step.title}</h2>
+          <p>{step.text}</p>
+        </section>
+      ))
+    }
+  </article>
+</Base>

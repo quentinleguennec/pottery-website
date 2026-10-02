@@ -1,0 +1,73 @@
+---
+import Base from "../../layouts/Base.astro";
+import PieceCard from "../../components/PieceCard.astro";
+import { Image } from "astro:assets";
+import { piecesInSeries, piecesInShape, series, shapes, type SeriesId } from "../../data/catalog";
+import { imageFor } from "../../data/images";
+
+export function getStaticPaths() {
+  return series.map((item) => ({ params: { slug: item.id } }));
+}
+
+const slug = Astro.params.slug as SeriesId;
+const item = series.find((entry) => entry.id === slug);
+if (!item) throw new Error(`Unknown series: ${slug}`);
+const groupImage = imageFor(item.groupImage);
+---
+
+<Base title={item.title} description={item.summary}>
+  <header class="series-intro">
+    <p class="eyebrow">Series</p>
+    <h1>{item.title}</h1>
+    <p class="lede">{item.intro}</p>
+  </header>
+
+  <div class="page">
+    {
+      groupImage && (
+        <div class="series-group">
+          <Image
+            src={groupImage}
+            alt=""
+            widths={[800, 1200, 1800]}
+            sizes="(min-width: 800px) 76rem, 100vw"
+          />
+        </div>
+      )
+    }
+    {
+      slug === "glitch" ? (
+        <>
+          <section class="shape">
+            <div class="shape-head">
+              <h2>{shapes.shift.title}</h2>
+              <p>{shapes.shift.summary}</p>
+            </div>
+            <div class="variant-row variant-row-full">
+              {piecesInShape("shift").map((piece, index) => (
+                <PieceCard piece={piece} image={imageFor(piece.image)} eager={index === 0} />
+              ))}
+            </div>
+          </section>
+          <section class="shape">
+            <div class="shape-head">
+              <h2>{shapes.reversal.title}</h2>
+              <p>{shapes.reversal.summary}</p>
+            </div>
+            <div class="variant-row variant-row-full">
+              {piecesInShape("reversal").map((piece) => (
+                <PieceCard piece={piece} image={imageFor(piece.image)} />
+              ))}
+            </div>
+          </section>
+        </>
+      ) : (
+        <div class="catalog-grid">
+          {piecesInSeries(slug).map((piece) => (
+            <PieceCard piece={piece} image={imageFor(piece.image)} />
+          ))}
+        </div>
+      )
+    }
+  </div>
+</Base>

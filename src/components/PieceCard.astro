@@ -1,0 +1,37 @@
+---
+import { Image } from "astro:assets";
+import type { ImageMetadata } from "astro";
+import type { Piece } from "../data/catalog";
+
+interface Props {
+  piece: Piece;
+  image?: ImageMetadata;
+  eager?: boolean;
+}
+
+const { piece, image, eager = false } = Astro.props;
+---
+
+<a class="frame" href={`/work/${piece.slug}`}>
+  <div class="frame-media">
+    {
+      image ? (
+        <Image
+          src={image}
+          alt=""
+          widths={[320, 640, 960, 1280]}
+          sizes="(min-width: 1100px) 18vw, 72vw"
+          loading={eager ? "eager" : "lazy"}
+        />
+      ) : (
+        <div class="frame-empty">
+          <span>Photograph coming</span>
+        </div>
+      )
+    }
+  </div>
+  <p class="frame-caption">
+    <span class="frame-title">{piece.title}</span>
+    {piece.glaze && <span class="frame-glaze">{piece.glaze}</span>}
+  </p>
+</a>

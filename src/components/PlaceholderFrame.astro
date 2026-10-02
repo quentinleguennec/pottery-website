@@ -1,0 +1,15 @@
+---
+interface Props {
+  label?: string;
+}
+
+const { label = "Photograph coming" } = Astro.props;
+---
+
+<div class="frame">
+  <div class="frame-media">
+    <div class="frame-empty">
+      <span>{label}</span>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,60 @@
+---
+import { Image } from "astro:assets";
+import Base from "../../layouts/Base.astro";
+import PieceCard from "../../components/PieceCard.astro";
+import PlaceholderFrame from "../../components/PlaceholderFrame.astro";
+import { series, individualPieces } from "../../data/catalog";
+import { imageFor } from "../../data/images";
+
+const individuals = individualPieces();
+---
+
+<Base title="Work">
+  <header class="series-intro">
+    <p class="eyebrow">Work</p>
+    <h1>New Creations</h1>
+    <p class="lede">Explore some of my recent work</p>
+  </header>
+
+  {
+    series.map((item) => {
+      const image = imageFor(item.image);
+      return (
+        <section class="section">
+          <a class="series-block" href={`/series/${item.id}`}>
+            {image ? (
+              <div class="frame-media">
+                <Image
+                  src={image}
+                  alt=""
+                  widths={[480, 800, 1200]}
+                  sizes="(min-width: 800px) 50vw, 100vw"
+                />
+              </div>
+            ) : (
+              <PlaceholderFrame />
+            )}
+            <div class="block-copy">
+              <p class="eyebrow">Series</p>
+              <h2>{item.title}</h2>
+              <p>{item.summary}</p>
+            </div>
+          </a>
+        </section>
+      );
+    })
+  }
+
+  <section class="section">
+    <div class="section-head">
+      <h2>Pieces</h2>
+    </div>
+    <div class="piece-grid">
+      {
+        individuals.map((piece) => (
+          <PieceCard piece={piece} image={imageFor(piece.image)} />
+        ))
+      }
+    </div>
+  </section>
+</Base>
