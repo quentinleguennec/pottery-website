@@ -41,7 +41,8 @@ a {
   color: inherit;
 }
 
-a:focus-visible {
+a:focus-visible,
+button:focus-visible {
   outline: 2px solid var(--ink);
   outline-offset: 3px;
 }
@@ -106,13 +107,25 @@ p {
   gap: 1.35rem;
 }
 
-.nav a {
+.nav a,
+.nav-back {
   text-decoration: none;
   font-size: 0.98rem;
 }
 
+.nav-back {
+  padding: 0;
+  border: 0;
+  background: none;
+  color: inherit;
+  font: inherit;
+  font-size: 0.98rem;
+  cursor: pointer;
+}
+
 .nav a[aria-current="page"],
-.nav a:hover {
+.nav a:hover,
+.nav-back:hover {
   text-decoration: underline;
   text-underline-offset: 0.22em;
 }
@@ -385,20 +398,6 @@ p {
 .piece-gallery img {
   width: 100%;
   height: auto;
-}
-
-.piece-meta {
-  display: grid;
-  gap: 0.35rem;
-  margin-top: 1.5rem;
-  padding-top: 1rem;
-  border-top: 1px solid var(--line);
-  color: var(--muted);
-  font-size: 0.98rem;
-}
-
-.piece-meta a {
-  color: var(--ink);
 }
 
 .related {

@@ -10,6 +10,7 @@ interface Props {
 const { title, description = site.description } = Astro.props;
 const pageTitle = title ? `${title} — ${site.artistName}` : site.artistName;
 const path = Astro.url.pathname;
+const isHome = path === "/";
 ---
 
 <!doctype html>
@@ -34,6 +35,13 @@ const path = Astro.url.pathname;
       <a class="brand" href="/">{site.artistName}</a>
       <nav class="nav" aria-label="Primary">
         <!-- <a href="/work" aria-current={path.startsWith("/work") ? "page" : undefined}>Work</a> -->
+        {
+          !isHome && (
+            <button type="button" class="nav-back" data-back>
+              Back
+            </button>
+          )
+        }
         <a href="/about" aria-current={path === "/about" ? "page" : undefined}>About</a>
         <!-- <a href="/process" aria-current={path === "/process" ? "page" : undefined}>Process</a> -->
       </nav>
@@ -45,5 +53,12 @@ const path = Astro.url.pathname;
       <p>{site.artistName}</p>
       <p>{site.tagline}</p>
     </footer>
+    <script>
+      document.querySelector("[data-back]")?.addEventListener("click", () => {
+        const cameFromThisSite = document.referrer.startsWith(location.origin);
+        if (cameFromThisSite) history.back();
+        else location.assign("/");
+      });
+    </script>
   </body>
 </html>

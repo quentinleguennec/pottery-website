@@ -2,7 +2,7 @@
 import { Image } from "astro:assets";
 import Base from "../../layouts/Base.astro";
 import PieceCard from "../../components/PieceCard.astro";
-import { getSeries, pieceImages, siblingGlazes, pieces, type SeriesId } from "../../data/catalog";
+import { getSeries, pieceImages, siblingGlazes, pieces } from "../../data/catalog";
 import { imageFor } from "../../data/images";
 
 export function getStaticPaths() {
@@ -47,19 +47,12 @@ const label = piece.glaze ? `${piece.title}, ${piece.glaze} glaze` : piece.title
       <h1>{piece.title}</h1>
       {series && piece.glaze && <p class="lede">{piece.glaze}</p>}
       {
-        series && (
-          <p class="piece-meta">
-            <a href={`/series/${series.id as SeriesId}`}>{series.title}</a>
-          </p>
-        )
-      }
-      {
         siblings.length > 0 && (
           <div class="related">
             <h2>Other glazes</h2>
             <div class="variant-row">
               {siblings.map((sibling) => (
-                <PieceCard piece={sibling} image={imageFor(sibling.image)} />
+                <PieceCard piece={sibling} image={imageFor(sibling.image)} showTitle={false} />
               ))}
             </div>
           </div>

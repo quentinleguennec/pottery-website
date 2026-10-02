@@ -44,7 +44,7 @@ const groupImage = imageFor(item.groupImage);
             </div>
             <div class="variant-row variant-row-full">
               {piecesInShape("shift").map((piece, index) => (
-                <PieceCard piece={piece} image={imageFor(piece.image)} eager={index === 0} />
+                <PieceCard piece={piece} image={imageFor(piece.image)} eager={index === 0} showTitle={false} />
               ))}
             </div>
           </section>
@@ -55,7 +55,7 @@ const groupImage = imageFor(item.groupImage);
             </div>
             <div class="variant-row variant-row-full">
               {piecesInShape("reversal").map((piece) => (
-                <PieceCard piece={piece} image={imageFor(piece.image)} />
+                <PieceCard piece={piece} image={imageFor(piece.image)} showTitle={false} />
               ))}
             </div>
           </section>
