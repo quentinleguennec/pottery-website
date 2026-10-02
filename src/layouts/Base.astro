@@ -33,9 +33,9 @@ const path = Astro.url.pathname;
     <header class="site-header">
       <a class="brand" href="/">{site.artistName}</a>
       <nav class="nav" aria-label="Primary">
-        <a href="/work" aria-current={path.startsWith("/work") ? "page" : undefined}>Work</a>
+        <!-- <a href="/work" aria-current={path.startsWith("/work") ? "page" : undefined}>Work</a> -->
         <a href="/about" aria-current={path === "/about" ? "page" : undefined}>About</a>
-        <a href="/process" aria-current={path === "/process" ? "page" : undefined}>Process</a>
+        <!-- <a href="/process" aria-current={path === "/process" ? "page" : undefined}>Process</a> -->
       </nav>
     </header>
     <main id="content">

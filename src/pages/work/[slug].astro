@@ -43,9 +43,9 @@ const label = piece.glaze ? `${piece.title}, ${piece.glaze} glaze` : piece.title
       }
     </div>
     <div class="piece-copy">
-      <p class="eyebrow">{series ? series.title : "Piece"}</p>
+      {series && <p class="eyebrow">{series.title}</p>}
       <h1>{piece.title}</h1>
-      {piece.glaze && <p class="lede">{piece.glaze}</p>}
+      {series && piece.glaze && <p class="lede">{piece.glaze}</p>}
       {
         series && (
           <p class="piece-meta">

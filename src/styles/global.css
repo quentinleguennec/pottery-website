@@ -157,13 +157,16 @@ p {
 }
 
 .hero-media {
+  aspect-ratio: 1;
+  width: min(100%, 72vh);
+  justify-self: end;
   background: var(--bg-deep);
   overflow: hidden;
 }
 
 .hero-media img {
   width: 100%;
-  height: min(72vh, 820px);
+  height: 100%;
   object-fit: cover;
   object-position: center;
 }
@@ -409,6 +412,10 @@ p {
   letter-spacing: 0;
   margin: 0 0 0.9rem;
   color: var(--muted);
+}
+
+.related .variant-row {
+  padding-bottom: 0.9rem;
 }
 
 @media (min-width: 800px) {

@@ -77,12 +77,12 @@ if (!hero || !glitchImage || !flowersImage) {
   <section class="section">
     <div class="section-head">
       <h2>Pieces</h2>
-      <a href="/work">All work</a>
+      <!-- <a href="/work">All work</a> -->
     </div>
     <div class="piece-grid">
       {
         individuals.map((piece) => (
-          <PieceCard piece={piece} image={imageFor(piece.image)} />
+          <PieceCard piece={piece} image={imageFor(piece.image)} showGlaze={false} />
         ))
       }
     </div>

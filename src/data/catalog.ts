@@ -83,7 +83,7 @@ export const pieces: Piece[] = [
     series: "glitch",
     shape: "shift",
     image: "ShiftFloatingBlue1.jpg",
-    images: ["ShiftFloatingBlue2.jpg", "ShiftProfile1.jpg"],
+    images: ["ShiftProfile1.jpg"],
     order: 2,
   },
   {

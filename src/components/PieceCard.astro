@@ -7,9 +7,10 @@ interface Props {
   piece: Piece;
   image?: ImageMetadata;
   eager?: boolean;
+  showGlaze?: boolean;
 }
 
-const { piece, image, eager = false } = Astro.props;
+const { piece, image, eager = false, showGlaze = true } = Astro.props;
 ---
 
 <a class="frame" href={`/work/${piece.slug}`}>
@@ -32,6 +33,6 @@ const { piece, image, eager = false } = Astro.props;
   </div>
   <p class="frame-caption">
     <span class="frame-title">{piece.title}</span>
-    {piece.glaze && <span class="frame-glaze">{piece.glaze}</span>}
+    {showGlaze && piece.glaze && <span class="frame-glaze">{piece.glaze}</span>}
   </p>
 </a>
