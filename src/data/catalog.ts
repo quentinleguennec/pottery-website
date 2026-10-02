@@ -47,7 +47,7 @@ export const series: Series[] = [
     title: "Flowers",
     summary: "Add colors to your life, even in the dead of winter",
     intro:
-      "Several flower designs, made to sit outside and bring color to a garden in winter.",
+      "Weather proof and colorful, these flowers bring life to your garden on winter days.",
     image: "FlowerStarBlue2.jpg",
     groupImage: "FlowerBouquet3.jpg",
   },
@@ -193,7 +193,8 @@ export const pieces: Piece[] = [
   },
   {
     slug: "flower-bee-pool",
-    title: "Bee pool",
+    title: "Bee Bath",
+    glaze: "Holds water for your little pollinators to drink from!",
     series: "flowers",
     image: "FlowerBeePool1.jpg",
     images: ["FlowerBeePool2.jpg"],
@@ -210,7 +211,7 @@ export const pieces: Piece[] = [
 
   {
     slug: "teapot-blue",
-    title: "Teapot",
+    title: "Spirit Dripper",
     glaze: "Blue",
     image: "TeapotBlue1.jpg",
     images: ["TeapotBlue2.jpg", "TeapotBlue3.jpg"],
