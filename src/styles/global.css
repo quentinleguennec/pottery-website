@@ -221,6 +221,10 @@ p {
   text-decoration: none;
 }
 
+.series-block .block-copy {
+  order: -1;
+}
+
 .series-block:hover h2 {
   text-decoration: underline;
   text-underline-offset: 0.12em;
@@ -434,6 +438,10 @@ p {
 
   .series-block {
     grid-template-columns: 1.15fr 0.85fr;
+  }
+
+  .series-block .block-copy {
+    order: 0;
   }
 
   .piece-grid {
