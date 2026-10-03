@@ -39,7 +39,7 @@ export const series: Series[] = [
     summary: "Question the nature of reality",
     intro:
       "Breaking symmetries to challenge expectations.",
-    image: "ReversalWhiteAndCobalt1.jpg",
+    image: "ReversalDuo1.jpg",
     groupImage: "ShiftTrio3Slim.jpg",
   },
   {
