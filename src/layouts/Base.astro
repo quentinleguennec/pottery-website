@@ -11,6 +11,7 @@ const { title, description = site.description } = Astro.props;
 const pageTitle = title ? `${title} — ${site.artistName}` : site.artistName;
 const path = Astro.url.pathname;
 const isHome = path === "/";
+const showBrand = !isHome && path !== "/about";
 ---
 
 <!doctype html>
@@ -32,7 +33,7 @@ const isHome = path === "/";
   <body>
     <a class="skip" href="#content">Skip to content</a>
     <header class="site-header">
-      <a class="brand" href="/">{site.artistName}</a>
+      {showBrand && <a class="brand" href="/">{site.artistName}</a>}
       <nav class="nav" aria-label="Primary">
         <!-- <a href="/work" aria-current={path.startsWith("/work") ? "page" : undefined}>Work</a> -->
         {

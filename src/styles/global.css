@@ -105,6 +105,7 @@ p {
 .nav {
   display: flex;
   gap: 1.35rem;
+  margin-left: auto;
 }
 
 .nav a,
@@ -386,8 +387,14 @@ p {
 
 .piece {
   display: grid;
+  grid-template-columns: minmax(0, 1fr);
   gap: 1.75rem;
   align-items: start;
+}
+
+.piece-gallery,
+.piece-copy {
+  min-width: 0;
 }
 
 .piece-gallery {
@@ -443,11 +450,6 @@ p {
     grid-template-columns: minmax(0, 1.25fr) minmax(0, 0.75fr);
     gap: 3.5rem;
     padding-top: 1rem;
-  }
-
-  .piece-gallery,
-  .piece-copy {
-    min-width: 0;
   }
 
   .piece-copy {
